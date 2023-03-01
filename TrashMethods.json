@@ -1,0 +1,65 @@
+printTravelLog(destinationX, destinationY, distance) {
+        let warehouseX = this.x;
+        let warehouseY = this.y;
+        let moveByX = true;
+        //Going to delivery address
+        for (let i = 0; i <= distance; i++) {
+            console.log(`Application Minute: ${i + 1} / Drone location: x(${this.x}), y(${this.y})`);
+            if (i == distance){
+                console.log("Package delivered!");
+                break;
+            }
+            if (this.x == destinationX){
+                moveByX = false;
+            }
+            else if (this.y == destinationY) {
+                moveByX = true;
+            }
+            if (this.x < destinationX && moveByX) {
+                this.x++;
+                moveByX = false;
+                continue;
+            }
+            else if (this.x > destinationX && moveByX) {
+                this.x--;
+                moveByX = false;
+                continue;
+            }
+            if (this.y < destinationY && !moveByX) {
+                this.y++;
+                moveByX = true;
+                continue;
+            }
+            else if (this.y > destinationY && !moveByX) {
+                this.y--;
+                moveByX = true;
+                continue;
+            }
+        }
+        //returning to warehouse
+        for (let i = distance; i <= 2 * distance; i++) {
+            console.log(`Application Minute: ${i + 1} / Drone location: x(${this.x}), y(${this.y})`);
+            if (i == 2 * distance){
+                break;
+            }
+            if (this.x == destinationX){
+                moveByX = false;
+            }
+            else if (this.y == destinationY) {
+                moveByX = true;
+            }
+            if (this.x < warehouseX && moveByX) {
+                this.x++;
+            }
+            else if (this.x > warehouseX && moveByX) {
+                this.x--;
+            }
+            if (this.y < warehouseY && !moveByX) {
+                this.y++;
+            }
+            else if (this.y > warehouseY && !moveByX) {
+                
+                this.y--;
+            }
+        }
+    }
